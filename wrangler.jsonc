@@ -1,0 +1,12 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "astro-cf-starter",
+    "main": "@astrojs/cloudflare/entrypoints/server",
+    "compatibility_date": "2026-10-05",
+    "assets": {
+        "binding": "ASSETS",
+        "directory": "./dist",
+        // Serve src/pages/404.astro for unknown paths instead of the default body.
+        "not_found_handling": "404-page"
+    }
+}

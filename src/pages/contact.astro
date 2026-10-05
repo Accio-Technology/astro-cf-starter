@@ -1,0 +1,143 @@
+---
+import CtaSection from '@common/components/CtaSection.astro';
+import ContactForm from '@common/components/ContactForm.astro';
+import Icon from '@common/components/Icon.astro';
+import Page from '../layouts/Page.astro';
+import { publicEnv } from '../config/env';
+import { site } from '../config/site';
+
+const channels = [
+    { icon: 'phone', label: 'Call us', value: site.contact?.phone, href: `tel:${site.contact?.phone?.replace(/\D/g, '')}` },
+    { icon: 'mail', label: 'Email us', value: site.contact?.email, href: `mailto:${site.contact?.email}` },
+    { icon: 'map-pin', label: 'Find us', value: site.contact?.address },
+].filter((c) => Boolean(c.value));
+---
+
+<Page
+    title="Contact"
+    description="Get in touch for a fixed quote, or call us any time for an emergency."
+    turnstile>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact us</h1>
+            <p>Send the details and we'll come back with a fixed price. For anything urgent, call — we answer 24 hours.</p>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <ul class="channels">
+                {
+                    channels.map((channel) => (
+                        <li class="channel">
+                            <Icon name={channel.icon} size={22} />
+                            <div>
+                                <span class="channel-label">{channel.label}</span>
+                                {channel.href ? (
+                                    <a class="channel-value" href={channel.href}>
+                                        {channel.value}
+                                    </a>
+                                ) : (
+                                    <span class="channel-value">{channel.value}</span>
+                                )}
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <ContactForm
+                id="contact-page"
+                action="/api/contact"
+                turnstileSiteKey={publicEnv.turnstileSiteKey}
+                submitLabel="Send enquiry" />
+        </div>
+    </section>
+
+    <CtaSection
+        id="areas"
+        title="Emergency? Call instead."
+        subhead="Forms can wait. If water is going somewhere it shouldn't, call us and we'll sort it out.">
+        {
+            site.contact?.phone && (
+                <a class="btn btn-primary" href={`tel:${site.contact.phone.replace(/\D/g, '')}`}>
+                    {site.contact.phone}
+                </a>
+            )
+        }
+    </CtaSection>
+</Page>
+
+<style>
+    .page-hero {
+        padding: 70px 0 50px;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .page-hero h1 {
+        margin-bottom: 16px;
+        font-size: 44px;
+    }
+
+    .page-hero p {
+        max-width: 620px;
+        color: var(--text-body);
+        font-size: 18px;
+    }
+
+    .contact {
+        padding: 64px 0 var(--section-padding);
+    }
+
+    .channels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 56px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .channel {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 22px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+    }
+
+    .channel svg {
+        flex-shrink: 0;
+        color: var(--color-primary);
+    }
+
+    .channel-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text-body);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .channel-value {
+        color: var(--text-strong);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    a.channel-value:hover {
+        color: var(--color-primary);
+    }
+
+    @media (max-width: 868px) {
+        .page-hero h1 {
+            font-size: 32px;
+        }
+    }
+</style>

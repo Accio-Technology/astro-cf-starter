@@ -1,0 +1,148 @@
+---
+import Icon from '@common/components/Icon.astro';
+import CtaSection from '@common/components/CtaSection.astro';
+import Page from '../layouts/Page.astro';
+import { site } from '../config/site';
+import { hours } from '../data/home';
+
+const details = [
+    { icon: 'map-pin', label: 'Address', value: site.contact?.address },
+    { icon: 'phone', label: 'Phone', value: site.contact?.phone },
+    { icon: 'mail', label: 'Email', value: site.contact?.email },
+].filter((d) => Boolean(d.value));
+---
+
+<Page title="About us" description="Who we are, how we work, and the standards we hold every job to.">
+    <section class="page-hero">
+        <div class="container">
+            <h1>About us</h1>
+            <p>Replace this with the real story of the business. Two or three honest paragraphs about who started the company and what you actually care about.</p>
+        </div>
+    </section>
+
+    <section class="about-details">
+        <div class="container">
+            <dl class="detail-grid">
+                {
+                    details.map((detail) => (
+                        <div class="detail">
+                            <dt>
+                                <Icon name={detail.icon} size={20} />
+                                {detail.label}
+                            </dt>
+                            <dd>{detail.value}</dd>
+                        </div>
+                    ))
+                }
+            </dl>
+
+            <h2>Opening hours</h2>
+            <dl class="hours-list">
+                {
+                    hours.map((row) => (
+                        <div class="hours-row">
+                            <dt>{row.label}</dt>
+                            <dd>{row.value}</dd>
+                        </div>
+                    ))
+                }
+            </dl>
+        </div>
+    </section>
+
+    <CtaSection id="contact" title="Work with us" subhead="Tell us what you need and we'll come back with a fixed price.">
+        <a class="btn btn-primary" href="/contact">Get in touch</a>
+    </CtaSection>
+</Page>
+
+<style>
+    .page-hero {
+        padding: 70px 0 50px;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .page-hero h1 {
+        margin-bottom: 16px;
+        font-size: 44px;
+    }
+
+    .page-hero p {
+        max-width: 620px;
+        color: var(--text-body);
+        font-size: 18px;
+    }
+
+    .about-details {
+        padding: var(--section-padding) 0;
+    }
+
+    .about-details h2 {
+        margin: 48px 0 20px;
+        font-size: 28px;
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+    }
+
+    .detail {
+        padding: 24px;
+        background: var(--bg-page);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+    }
+
+    .detail dt {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        color: var(--text-body);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    .detail dt svg {
+        color: var(--color-primary);
+    }
+
+    .detail dd {
+        margin: 0;
+        color: var(--text-strong);
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .hours-list {
+        max-width: 520px;
+    }
+
+    .hours-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hours-row dd {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    @media (max-width: 868px) {
+        .page-hero h1 {
+            font-size: 32px;
+        }
+
+        .hours-row {
+            flex-direction: column;
+            gap: 4px;
+        }
+    }
+</style>

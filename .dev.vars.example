@@ -1,0 +1,13 @@
+# Secrets for `wrangler pages dev` / `astro dev`.
+# Copy to .dev.vars and fill in. Never commit .dev.vars.
+
+# Resend API key for sending contact-form mail.
+# https://resend.com/api-keys
+RESEND_API_KEY=
+
+# Cloudflare Turnstile SECRET key. Server-side only — never expose to the browser.
+# https://dash.cloudflare.com/turnstile
+TURNSTILE_SECRET_KEY=
+
+# Public Turnstile site key, used by the contact form component.
+PUBLIC_TURNSTILE_SITE_KEY=

@@ -1,0 +1,31 @@
+/* =========================================================
+   Site theme overrides.
+
+   astro-common ships the full token set with sensible defaults
+   (src/common/styles/theme.css). A site only overrides the tokens
+   it wants to change — every component reads from these
+   variables, so nothing else needs editing to rebrand.
+
+   The `site` layer gives site styles lower priority than the
+   library's own rules, which matters for the global utilities
+   the library provides.
+
+   Swap the palette below to rebrand the whole site.
+   ========================================================= */
+
+@layer site {
+    :root {
+        /* Brand — teal and amber instead of the library's default blue. */
+        --color-primary: #0f766e;
+        --color-accent: #f59e0b;
+        --color-dark: #0f1e1b;
+        --color-dark-surface: #17302b;
+        --gradient-brand: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+        --gradient-dark: linear-gradient(180deg, #0f1e1b 0%, #071210 100%);
+
+        /* Radii and layout. */
+        --radius-md: 10px;
+        --radius-lg: 14px;
+        --container-max: 1140px;
+    }
+}

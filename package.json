@@ -1,0 +1,25 @@
+{
+    "name": "astro-cf-starter",
+    "type": "module",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "cf-typegen": "wrangler types ./src/env.d.ts",
+        "dev": "npm run cf-typegen --silent && astro dev",
+        "build": "npm run cf-typegen --silent && astro build",
+        "preview": "astro preview",
+        "deploy": "wrangler deploy",
+        "check": "npm run cf-typegen --silent && astro check",
+        "verify": "npm run cf-typegen --silent && astro check && astro build"
+    },
+    "dependencies": {
+        "@astrojs/cloudflare": "^14.3.3"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.10",
+        "@astrojs/sitemap": "^3.7.4",
+        "astro": "^7.3.5",
+        "typescript": "^5.9.3",
+        "wrangler": "^4.147.0"
+    }
+}

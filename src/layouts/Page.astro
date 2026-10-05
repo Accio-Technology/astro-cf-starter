@@ -1,0 +1,51 @@
+---
+/**
+ * Site layout: wraps astro-common's BaseLayout with this site's chrome, so pages
+ * only supply a title and description.
+ */
+import BaseLayout from '@common/components/BaseLayout.astro';
+import { site } from '../config/site';
+import logo from '../assets/logo.svg';
+import '../styles/theme.css';
+
+interface Props {
+    title: string;
+    description?: string;
+    noindex?: boolean;
+    /** Set true only on pages that render a Turnstile widget. */
+    turnstile?: boolean;
+    /** Page-level Schema.org objects, merged after site.jsonLd. */
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, noindex, turnstile, jsonLd } = Astro.props;
+
+const navLinks = site.nav ?? [];
+const footerBusinessName = site.legalName ?? site.name;
+---
+
+<BaseLayout
+    {site}
+    {title}
+    {description}
+    {noindex}
+    {turnstile}
+    {jsonLd}
+    bodyClass="page"
+    header={{ logo, logoAlt: site.name, navLinks, cta: { href: '/contact', label: 'Get a Quote' } }}
+    footer={{
+        businessName: footerBusinessName,
+        tagline: site.tagline,
+        columns: [{ heading: 'Site', links: navLinks }],
+        social: site.social,
+    }}>
+    <main>
+        <slot />
+    </main>
+
+    <Fragment slot="scripts">
+        <script>
+            import '@common/scripts/index';
+        </script>
+    </Fragment>
+</BaseLayout>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48" role="img" aria-label="Acme Plumbing">
+    <rect width="200" height="48" rx="8" fill="#0b192c" />
+    <path d="M28 12v14a6 6 0 0 0 12 0V12h-4v14a2 2 0 0 1-4 0V12z" fill="#00c6ff" />
+    <text x="52" y="31" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Acme Plumbing</text>
+</svg>

@@ -1,0 +1,48 @@
+---
+import Solutions from '@common/components/Solutions.astro';
+import CtaSection from '@common/components/CtaSection.astro';
+import Page from '../layouts/Page.astro';
+import { services } from '../data/home';
+---
+
+<Page
+    title="Services and pricing"
+    description="Emergency repairs, installations, and planned maintenance. Fixed pricing before we start.">
+    <section class="page-hero">
+        <div class="container">
+            <h1>Services</h1>
+            <p>Everything from an urgent leak to a full bathroom refit, with a fixed price agreed before we start.</p>
+        </div>
+    </section>
+
+    <Solutions id="services" title="What we do" items={services} />
+
+    <CtaSection id="contact" title="Not sure which you need?" subhead="Describe the problem and we'll tell you what it takes and what it costs.">
+        <a class="btn btn-primary" href="/contact">Ask for a quote</a>
+    </CtaSection>
+</Page>
+
+<style>
+    .page-hero {
+        padding: 70px 0 50px;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .page-hero h1 {
+        margin-bottom: 16px;
+        font-size: 44px;
+    }
+
+    .page-hero p {
+        max-width: 620px;
+        color: var(--text-body);
+        font-size: 18px;
+    }
+
+    @media (max-width: 868px) {
+        .page-hero h1 {
+            font-size: 32px;
+        }
+    }
+</style>

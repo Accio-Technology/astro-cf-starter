@@ -1,0 +1,53 @@
+---
+import Page from '../layouts/Page.astro';
+---
+
+<Page title="Page not found" description="That page does not exist." noindex>
+    <section class="notfound">
+        <div class="container">
+            <p class="notfound-code">404</p>
+            <h1>That page does not exist</h1>
+            <p class="notfound-text">It may have moved, or the link might be out of date.</p>
+            <div class="notfound-actions">
+                <a class="btn btn-primary" href="/">Back to home</a>
+                <a class="btn btn-secondary" href="/contact">Contact us</a>
+            </div>
+        </div>
+    </section>
+</Page>
+
+<style>
+    .notfound {
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .notfound-code {
+        margin-bottom: 8px;
+        background: var(--gradient-brand);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 88px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .notfound h1 {
+        margin-bottom: 12px;
+        font-size: 32px;
+    }
+
+    .notfound-text {
+        margin-bottom: 32px;
+        color: var(--text-body);
+        font-size: 18px;
+    }
+
+    .notfound-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+</style>
